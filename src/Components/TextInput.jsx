@@ -9,7 +9,7 @@ const Label = styled(FormLabel)`
   color: #001c30;
 `;
 
-const TextInput = ({ title, state, setState }) => {
+const TextInput = ({ title, state, setState, maxValue }) => {
   return (
     <FormControl fullWidth>
       <Label>{title}</Label>
@@ -17,7 +17,12 @@ const TextInput = ({ title, state, setState }) => {
         type="number"
         placeholder={title}
         value={state}
-        onChange={(e) => setState(e.target.value)}
+        onChange={(e) => {
+          if (e.target.value > maxValue) {
+            alert("Maximum limit exceeded. Limit 100");
+            return;
+          } else setState(e.target.value);
+        }}
       />
     </FormControl>
   );

@@ -44,7 +44,7 @@ const App = () => {
     const n = tenure / 12; // for year
 
     const __emi =
-      (loanAmount * rateOfInterest * 1 + rateOfInterest ** n) /
+      (loanAmount * rateOfInterest * (1 + rateOfInterest ** n)) /
       (1 + rateOfInterest ** n - 1);
 
     return (__emi / 12).toFixed(0);
@@ -110,11 +110,13 @@ const App = () => {
           title={"Interest Rate (in %)"}
           state={rate}
           setState={setRate}
+          maxValue={100}
         />
         <TextInput
           title={"Processing Fee (in %)"}
           state={fee}
           setState={setFee}
+          maxValue={100}
         />
 
         <SliderInput
